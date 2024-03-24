@@ -1,0 +1,4 @@
+---
+profiles::sysctl_vpn::data:
+  net.ipv4.ip_forward:
+    value: 1

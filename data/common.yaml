@@ -1,0 +1,43 @@
+---
+profiles::base::packages:
+  - mc
+  - vim
+  - tcpdump
+  - wget
+  - nano
+  - curl
+  - psmisc
+  - net-tools
+  - dnsutils
+
+profiles::groups::groups:
+  db:
+    ensure: present
+  web:
+    ensure: present
+  allstaff:
+    ensure: present
+
+profiles::users::users:
+  nick:
+    ensure: present
+    uid: 1330
+    gid: allstaff
+    groups:
+      - db
+  dan:
+    uid: 1308
+    gid: allstaff
+    groups:
+      - web
+
+profiles::sysctl_vpn::data:
+  net.ipv4.ip_forward:
+    value: 0
+
+profiles::ssh_keys::ssh_keys:
+  puppetserver_root:
+    user: root
+    type: ssh-rsa
+    key: AAAAB3NzaC1yc2EAAAADAQABAAABAQC3H7TcrTKNBPfnFM1sZkmmMph/NurbTGLV5YUhHR2fmxWOda+BBfGfYrIywDOEyPtNzKI1+T/atUTmkcJmsPPwAEaWPLZnPPqbnSgdagx/Wk2K3GVKz+Pxs9Q4OS69uDjfL87Z0RxVCZaNss3WwHz4fqZtLFNAN6gQBQCo4W+iA9yB5cJUZTuEFrSSeQcLrYVYvDgYMoJixRZy2StCodDDkwSuVscWf+oXtnJnc+NbgTk9mPrbUoFHM3AVYuY0PCGC77evnYAth2nGWn9mXgyz557WvMW2CdpM6o7RI2g4+ZmGwb/7gfOKeK5JpjFZBT3kVVjrorgxhPJ25ru27w+D
+
