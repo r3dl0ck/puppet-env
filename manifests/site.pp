@@ -1,11 +1,12 @@
+node /^db/ {
+  include roles::db
+}
+
+node /^web/ {
+  include roles::www
+}
+
 node default {
-  include ::roles::base
+  include roles::base
 }
 
-node 'db0.example.com' {
-  include ::roles::db
-}
-
-node 'web0.example.com' {
-  include ::roles::www
-}
